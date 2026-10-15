@@ -1,2 +1,6 @@
 data/
 .DS_Store
+ios/Local.xcconfig
+ios/DerivedData/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/

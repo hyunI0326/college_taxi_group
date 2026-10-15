@@ -1,0 +1,35 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+		A10000000000000000000001 = {isa = PBXBuildFile; fileRef = A10000000000000000000002; };
+		A10000000000000000000003 = {isa = PBXBuildFile; productRef = A10000000000000000000004; };
+		A10000000000000000000005 = {isa = PBXBuildFile; productRef = A10000000000000000000006; };
+		A10000000000000000000007 = {isa = PBXBuildFile; productRef = A10000000000000000000008; };
+		A10000000000000000000002 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiPotApp.swift; sourceTree = "<group>"; };
+		A10000000000000000000009 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1000000000000000000000A = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A1000000000000000000000B = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiPot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1000000000000000000000C = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000003, A10000000000000000000005, A10000000000000000000007); runOnlyForDeploymentPostprocessing = 0; };
+		A1000000000000000000000D = {isa = PBXGroup; children = (A1000000000000000000000A, A1000000000000000000000E, A1000000000000000000000F); sourceTree = "<group>"; };
+		A1000000000000000000000E = {isa = PBXGroup; children = (A10000000000000000000002, A10000000000000000000009); path = TaxiPot; sourceTree = "<group>"; };
+		A1000000000000000000000F = {isa = PBXGroup; children = (A1000000000000000000000B); name = Products; sourceTree = "<group>"; };
+		A10000000000000000000010 = {isa = PBXNativeTarget; buildConfigurationList = A10000000000000000000011; buildPhases = (A10000000000000000000012, A1000000000000000000000C, A10000000000000000000013); buildRules = (); dependencies = (); name = TaxiPot; packageProductDependencies = (A10000000000000000000004, A10000000000000000000006, A10000000000000000000008); productName = TaxiPot; productReference = A1000000000000000000000B; productType = "com.apple.product-type.application"; };
+		A10000000000000000000014 = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 2700; TargetAttributes = {A10000000000000000000010 = {CreatedOnToolsVersion = 27.0; }; }; }; buildConfigurationList = A10000000000000000000015; compatibilityVersion = "Xcode 14.0"; developmentRegion = ko; hasScannedForEncodings = 0; knownRegions = (ko, en, Base); mainGroup = A1000000000000000000000D; packageReferences = (A10000000000000000000016); productRefGroup = A1000000000000000000000F; projectDirPath = ""; projectRoot = ""; targets = (A10000000000000000000010); };
+		A10000000000000000000013 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		A10000000000000000000012 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000001); runOnlyForDeploymentPostprocessing = 0; };
+		A10000000000000000000017 = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CODE_SIGN_STYLE = Automatic; DEBUG_INFORMATION_FORMAT = dwarf; ENABLE_TESTABILITY = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Debug; };
+		A10000000000000000000018 = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CODE_SIGN_STYLE = Automatic; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Release; };
+		A10000000000000000000019 = {isa = XCBuildConfiguration; baseConfigurationReference = A1000000000000000000000A; buildSettings = {INFOPLIST_FILE = TaxiPot/Info.plist; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks"); PRODUCT_BUNDLE_IDENTIFIER = "$(TAXIPOT_BUNDLE_ID)"; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_EMIT_LOC_STRINGS = YES; TARGETED_DEVICE_FAMILY = 1; }; name = Debug; };
+		A1000000000000000000001A = {isa = XCBuildConfiguration; baseConfigurationReference = A1000000000000000000000A; buildSettings = {INFOPLIST_FILE = TaxiPot/Info.plist; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks"); PRODUCT_BUNDLE_IDENTIFIER = "$(TAXIPOT_BUNDLE_ID)"; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_EMIT_LOC_STRINGS = YES; TARGETED_DEVICE_FAMILY = 1; }; name = Release; };
+		A10000000000000000000011 = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000019, A1000000000000000000001A); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		A10000000000000000000015 = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000017, A10000000000000000000018); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		A10000000000000000000016 = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/kakao/kakao-ios-sdk"; requirement = {kind = upToNextMajorVersion; minimumVersion = 2.23.0; }; };
+		A10000000000000000000004 = {isa = XCSwiftPackageProductDependency; package = A10000000000000000000016; productName = KakaoSDKCommon; };
+		A10000000000000000000006 = {isa = XCSwiftPackageProductDependency; package = A10000000000000000000016; productName = KakaoSDKShare; };
+		A10000000000000000000008 = {isa = XCSwiftPackageProductDependency; package = A10000000000000000000016; productName = KakaoSDKTemplate; };
+	};
+	rootObject = A10000000000000000000014;
+}

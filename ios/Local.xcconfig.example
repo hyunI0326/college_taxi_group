@@ -1,0 +1,3 @@
+// Copy to Local.xcconfig and match the bundle ID registered with Kakao Developers.
+TAXIPOT_BUNDLE_ID = com.kimsunghyun.taxipot
+KAKAO_NATIVE_APP_KEY = YOUR_NATIVE_APP_KEY

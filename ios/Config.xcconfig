@@ -1,0 +1,3 @@
+TAXIPOT_BUNDLE_ID = com.kimsunghyun.taxipot
+KAKAO_NATIVE_APP_KEY = 
+#include? "Local.xcconfig"
