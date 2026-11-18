@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleDevelopmentRegion</key><string>ko</string>
-    <key>CFBundleDisplayName</key><string>택시팟</string>
+    <key>CFBundleDisplayName</key><string>대택구</string>
     <key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key><string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
     <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
@@ -12,12 +12,17 @@
     <key>CFBundleShortVersionString</key><string>1.0</string>
     <key>CFBundleVersion</key><string>1</string>
     <key>LSApplicationQueriesSchemes</key>
-    <array><string>kakaolink</string></array>
+    <array><string>kakaolink</string><string>kakaokompassauth</string></array>
     <key>CFBundleURLTypes</key>
     <array><dict><key>CFBundleURLSchemes</key><array><string>kakao$(KAKAO_NATIVE_APP_KEY)</string></array></dict></array>
     <key>KakaoNativeAppKey</key><string>$(KAKAO_NATIVE_APP_KEY)</string>
+    <key>GADApplicationIdentifier</key><string>$(ADMOB_APP_ID)</string>
+    <key>AdMobBannerID</key><string>$(ADMOB_BANNER_ID)</string>
+    <key>AdMobInterstitialID</key><string>$(ADMOB_INTERSTITIAL_ID)</string>
+    <key>SKAdNetworkItems</key><array><dict><key>SKAdNetworkIdentifier</key><string>cstr6suwn9.skadnetwork</string></dict></array>
     <key>NSAppTransportSecurity</key>
     <dict><key>NSAllowsLocalNetworking</key><true/></dict>
+    <key>NSLocalNetworkUsageDescription</key><string>같은 Wi-Fi의 대택구 테스트 서버에 연결합니다.</string>
     <key>UILaunchScreen</key><dict/>
     <key>UISupportedInterfaceOrientations</key>
     <array><string>UIInterfaceOrientationPortrait</string></array>

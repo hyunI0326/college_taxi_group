@@ -1,0 +1,21 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "taxipot",
+	"main": "./cloud/worker.mjs",
+	"compatibility_date": "2026-10-15",
+	"triggers": { "crons": ["0 18 * * *"] },
+	"assets": {
+		"directory": "./public",
+		"binding": "ASSETS",
+		"run_worker_first": [
+			"/api/*"
+		]
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "taxipot",
+			"database_id": "8e2421df-b04a-4a2b-93bc-763426f8a1e8"
+		}
+	]
+}

@@ -1,3 +1,6 @@
 TAXIPOT_BUNDLE_ID = com.kimsunghyun.taxipot
 KAKAO_NATIVE_APP_KEY = 
+ADMOB_APP_ID = ca-app-pub-3940256099942544~1458002511
+ADMOB_BANNER_ID =
+ADMOB_INTERSTITIAL_ID =
 #include? "Local.xcconfig"

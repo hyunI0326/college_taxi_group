@@ -92,8 +92,10 @@ a{color:inherit;text-decoration:none}
 .party-card h4{font-size:16px;letter-spacing:-.5px;margin:12px 0 7px}
 .party-card p{font-size:11px;color:#87968b;margin:0 0 15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .avatar-stack{display:flex;padding-left:5px}
-.avatar-stack span{width:25px;height:25px;border:2px solid white;border-radius:50%;margin-left:-5px;display:grid;place-items:center;background:#e2eee5;color:#3f7454;font-size:10px;font-weight:800}
+.avatar-stack .member-avatar{width:25px;height:25px;border:2px solid white;margin-left:-5px;font-size:10px}
 .avatar-stack span:nth-child(even){background:#f4e9ca;color:#967437}
+.member-avatar{width:24px;height:24px;flex:none;border-radius:50%;display:inline-grid;place-items:center;object-fit:cover;background:#dcebdd;color:#356347;font-weight:800}
+.kakao-profile-button{background:#f9e8a8;color:#2d3228;border-color:#f9e8a8}
 .member-count{font-size:11px;color:#758777;margin-left:7px;margin-right:auto}
 .card-arrow{font-size:20px;color:#3b7150}
 .how-it-works{display:flex;gap:12px;padding:19px 4px 0;margin-top:20px;border-top:1px solid #edf0e8}
@@ -131,8 +133,10 @@ a{color:inherit;text-decoration:none}
 .detail-members{border-top:1px solid #eef0e9;margin-top:13px;padding-top:14px}
 .detail-members>strong{font-size:12px}
 .member-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
-.member-chip{background:#edf4eb;color:#4b7556;border-radius:100px;padding:6px 9px;font-size:11px}
+.member-chip{display:inline-flex;align-items:center;gap:6px;background:#edf4eb;color:#4b7556;border-radius:100px;padding:5px 9px 5px 5px;font-size:11px}
+.member-chip .member-avatar{width:20px;height:20px;font-size:10px}
 .member-chip.me{background:#245947;color:#fff}
+.chat-open{width:100%;background:#eaf3ea;border:1px solid #c9dfcb;color:#245947;border-radius:10px;padding:12px;font-size:12px;font-weight:800}
 .detail-action{margin-top:17px}
 .detail-action .primary-button{width:100%}
 .detail-action .secondary-button{background:#fff;border:1px solid #ccdccc;color:#285b42;border-radius:10px;padding:10px 13px;font-size:12px;font-weight:800}
@@ -180,8 +184,43 @@ a{color:inherit;text-decoration:none}
 .coordinate-dot{display:inline-block;width:7px;height:7px;background:#ddad53;border-radius:50%}
 .identity-modal{max-width:440px}
 .identity-modal .modal-inner{padding:34px}
+.seat-options,.detail-close,.identity-profile-note{display:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.chat-modal{max-width:520px}
+.chat-modal h2{margin-bottom:17px}
+.chat-messages{height:min(50vh,440px);min-height:220px;overflow:auto;display:flex;flex-direction:column;gap:12px;padding:15px;background:#f5f8f3;border-radius:12px}
+.chat-empty{margin:auto;color:#87988a;font-size:12px;text-align:center}
+.chat-line{display:flex;align-items:end;gap:7px;max-width:88%}
+.chat-line.mine{align-self:flex-end;text-align:right}
+.chat-line>div{min-width:0}
+.chat-line strong{font-size:11px;color:#55715a}
+.chat-line p{margin:3px 0 2px;padding:9px 12px;background:#fff;border-radius:12px;color:#253e2d;font-size:13px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.chat-line.mine p{background:#e7edd1}
+.chat-line small{color:#98a59a;font-size:9px}
+.chat-form{display:flex;gap:8px;margin-top:12px}
+.chat-form input{flex:1;min-width:0;border:1px solid #dce5d9;border-radius:10px;padding:11px;font-size:13px}
+.chat-form button{border-radius:10px}
 .toast{position:fixed;z-index:10000;bottom:24px;left:50%;transform:translate(-50%,20px);background:#173d2c;color:#fff;border-radius:10px;padding:12px 17px;box-shadow:0 12px 30px #142d2344;font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
 .toast.visible{opacity:1;transform:translate(-50%,0)}
+
+[hidden]{display:none!important}
+.auth-screen{min-height:100dvh;display:grid;place-items:center;padding:28px 16px;background:radial-gradient(circle at 20% 15%,#fff2d9,transparent 42%),#f7f6f1}
+.auth-card{width:min(100%,430px);padding:34px;border-radius:28px;background:#fff;box-shadow:0 24px 70px #513b1a1a}
+.auth-symbol{width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:#fff0d7;font-size:30px;margin-bottom:22px}
+.auth-card h1{font-size:42px;letter-spacing:-2px;margin:6px 0 8px}
+.auth-card>p{font-size:14px;line-height:1.65;color:#69756b;margin:0 0 25px}
+.auth-tabs{display:flex;gap:6px;padding:5px;background:#f3f4f0;border-radius:15px;margin-bottom:24px}
+.auth-tabs button{flex:1;border:0;background:transparent;border-radius:11px;padding:12px;font-size:14px;font-weight:800;color:#7a867b}
+.auth-tabs button.active{background:#fff;color:#b15e00;box-shadow:0 2px 8px #1e392015}
+.auth-card label{display:block;font-size:12px;font-weight:800;margin:15px 0 7px}
+.auth-card input,.auth-card select{width:100%;min-height:48px;border:1px solid #dce5d9;border-radius:12px;background:#fff;padding:11px 13px;font-size:15px;color:#223b2a}
+.auth-card input:focus,.auth-card select:focus{outline:2px solid #ff9500;outline-offset:1px}
+.auth-card .primary-button{width:100%;justify-content:center;min-height:52px;margin-top:25px;font-size:15px;background:#ff9500;box-shadow:none}
+.auth-card small{display:block;color:#88948a;line-height:1.5;margin-top:19px;text-align:center}
+.auth-hint{font-size:11px;color:#819084;line-height:1.55;margin:8px 0 0}
+.auth-error{font-size:12px;color:#b83228;background:#fff0ed;border-radius:10px;padding:10px 12px;margin:15px 0 0}
+.logout-button{display:block;margin-top:18px;border:0;background:none;color:#a95349;text-decoration:underline;font-size:12px;font-weight:700;padding:8px 0}
+@media(max-width:570px){.auth-screen{align-items:start;padding:0;background:#fff}.auth-card{box-shadow:none;border-radius:0;padding:54px 24px 32px;min-height:100dvh}}
 
 @media(max-width:1100px){.site-shell{padding:0 30px}
 .hero h1{font-size:45px}
@@ -251,3 +290,107 @@ a{color:inherit;text-decoration:none}
 .modal h2{font-size:23px}
 .picker-map{height:180px}
 }
+
+@media(max-width:800px){
+html.android-app{background:#fff;color:#1c1c1e}
+html.android-app body{background:#fff}
+html.android-app .site-shell{padding:0}
+html.android-app .topbar{height:56px;padding:0 20px;border:0}
+html.android-app .brand,html.android-app .nav-caption,html.android-app #kakao-profile-button{display:none}
+html.android-app .top-actions{width:100%;justify-content:flex-start}
+html.android-app #profile-button{border:0;box-shadow:none;background:none;color:#1c1c1e;padding:8px 0;font-size:14px}
+html.android-app #profile-button::before{content:'◉';font-size:21px;vertical-align:-2px;margin-right:8px}
+html.android-app #profile-button span{display:none}
+html.android-app .hero{display:block;min-height:0;border:0;overflow:visible}
+html.android-app .hero-copy{padding:12px 20px 0}
+html.android-app .eyebrow{color:#f28a00;letter-spacing:0;font-size:12px}
+html.android-app .live-dot,html.android-app .hero-art,html.android-app .hero .text-link{display:none}
+html.android-app .hero h1{font-size:38px;letter-spacing:-1.5px;line-height:1.2;margin:5px 0 8px}
+html.android-app .hero p{font-size:14px;line-height:1.6;white-space:pre-line;color:#636366}
+html.android-app .hero-actions{position:fixed;z-index:80;left:0;right:0;bottom:0;margin:0;padding:10px 20px max(30px,env(safe-area-inset-bottom));background:#fffffff0;backdrop-filter:blur(16px)}
+html.android-app .hero-actions .primary-button{width:100%;min-height:54px;justify-content:center;font-size:16px}
+html.android-app .hero-actions .primary-button span{display:none}
+html.android-app .primary-button,html.android-app .fare-form button{background:#ff9500;box-shadow:none}
+html.android-app .workspace{padding:0 20px 120px}
+html.android-app .section-heading{display:none}
+html.android-app .region-tabs{gap:8px;margin:22px 0}
+html.android-app .region-tab{min-height:48px;border:0;border-radius:14px;background:#f2f2f7;box-shadow:none;color:#1c1c1e;padding:10px 4px}
+html.android-app .region-tab.active{background:#ff9500;color:#fff}
+html.android-app .region-tab span:not(.tab-icon){font-size:14px}
+html.android-app .region-tab small{display:none}
+html.android-app .workspace-grid{display:flex;flex-direction:column;gap:20px}
+html.android-app .map-column{display:contents}
+html.android-app .map-card{order:0;width:100%;border:0;border-radius:20px;box-shadow:none}
+html.android-app .map-heading,html.android-app .map-footer{display:none}
+html.android-app .main-map{height:240px;border-radius:20px;overflow:hidden}
+html.android-app .map-pin{background:#ff9500}
+html.android-app .party-column{order:1;width:100%;min-height:0;padding:0;border:0;box-shadow:none}
+html.android-app .list-heading{margin:0 0 14px;align-items:center}
+html.android-app .list-heading h3{font-size:22px;margin:0}
+html.android-app .list-heading h3 span{background:none;color:#8e8e93;font-size:14px}
+html.android-app .list-heading p,html.android-app .small-create,html.android-app .how-it-works,html.android-app .footer{display:none}
+html.android-app .party-card{background:#f2f2f7;border:0;border-radius:18px;padding:18px}
+html.android-app .party-card h4{font-size:17px;margin:10px 0 7px}
+html.android-app .party-card p{font-size:13px;color:#636366}
+html.android-app .status{color:#df7900;background:#fff1dc;border-radius:100px;padding:6px 10px;font-size:11px}
+html.android-app .status.full,html.android-app .status.settled{color:#636366;background:#e5e5ea}
+html.android-app .card-arrow{color:#a0a0a5}
+html.android-app .empty-state{min-height:220px;background:#f2f2f7;border:0}
+html.android-app .empty-state button{display:none}
+html.android-detail-open body{overflow:hidden}
+html.android-detail-open body::before{content:'';position:fixed;inset:0;z-index:90;background:#0007}
+html.android-app .party-detail{display:none;position:fixed;z-index:100;left:0;right:0;bottom:0;max-height:88dvh;overflow:auto;margin:0;padding:58px 20px max(30px,env(safe-area-inset-bottom));border:0;border-radius:22px 22px 0 0;box-shadow:0 -12px 45px #0003;background:#fff}
+html.android-app .party-detail.open{display:block}
+html.android-app .detail-close{display:block;position:absolute;right:20px;top:18px;border:0;background:#f2f2f7;border-radius:10px;padding:8px 13px;color:#636366;font-size:13px;font-weight:700}
+html.android-app .detail-top .status{font-size:12px}
+html.android-app .party-detail h3{font-size:25px}
+html.android-app .detail-map-slot{margin:16px 0;border-radius:18px;overflow:hidden}
+html.android-app .detail-map-slot .main-map{height:210px}
+html.android-app .detail-fact{background:#f2f2f7}
+html.android-app .fare-total{background:#fff1dc}
+html.android-app .fare-total strong,html.android-app .fare-lines li strong{color:#a25b00}
+html.android-app .connect-box{background:#fffaf2;border-color:#ffe2b8}
+html.android-app .copy-button{border-color:#ffd59b;color:#a25b00}
+html.android-app .member-chip{background:#fff1dc;color:#805122}
+html.android-app .member-chip.me{background:#ff9500;color:#fff}
+html.android-app .chat-open{background:#fff1dc;border-color:#ffd59b;color:#a25b00}
+html.android-app .create-modal,html.android-app .identity-modal,html.android-app .chat-modal{position:fixed;inset:0;width:100%;max-width:none;height:100dvh;max-height:none;margin:0;border-radius:0;box-shadow:none}
+html.android-app .create-modal .modal-inner,html.android-app .identity-modal .modal-inner{height:100%;overflow:auto;padding:60px 20px 100px}
+html.android-app .create-modal .section-kicker,html.android-app .identity-modal .section-kicker,html.android-app .identity-modal .modal-icon{display:none}
+html.android-app .create-modal h2,html.android-app .identity-modal h2{position:absolute;top:18px;left:20px;font-size:20px;margin:0}
+html.android-app .create-modal .close-button,html.android-app .identity-modal .close-button,html.android-app .chat-modal .close-button{top:15px;right:20px;border-radius:10px;width:auto;height:auto;padding:5px 10px;font-size:20px}
+html.android-app .create-modal .modal-inner>p{margin:4px 0 16px}
+html.android-app .create-modal .field-row{display:block}
+html.android-app .create-modal .field{padding:16px;margin-top:14px;background:#f2f2f7;border-radius:18px}
+html.android-app .create-modal .field label{font-size:14px;color:#636366;margin-bottom:9px}
+html.android-app .create-modal input{border:0;background:transparent;box-shadow:none;padding:4px 0;font-size:16px}
+html.android-app .create-modal .seats-field select{display:none}
+html.android-app .seat-options{display:flex;gap:8px}
+html.android-app .seat-options button{flex:1;min-height:48px;border:0;border-radius:14px;background:#e5e5ea;color:#1c1c1e;font-size:16px;font-weight:700}
+html.android-app .seat-options button[aria-pressed=true]{background:#ff9500;color:#fff}
+html.android-app .picker-map{height:230px;border-radius:14px}
+html.android-app .create-modal .primary-button.full,html.android-app .identity-modal .primary-button.full{position:fixed;left:20px;bottom:max(30px,env(safe-area-inset-bottom));width:calc(100% - 40px);min-height:54px;margin:0;justify-content:center;font-size:16px}
+html.android-app .identity-modal label{margin-top:28px}
+html.android-app .identity-modal input{font-size:16px;padding:16px;background:#f2f2f7;border:0;border-radius:14px}
+html.android-app .kakao-connect:not([hidden]){display:block;width:100%;margin-top:20px;padding:15px;border:0;border-radius:14px;background:#fee500;color:#2b2b2b;font-weight:800}
+html.android-app .identity-profile-note{display:block;margin-top:12px;font-size:12px;color:#8e8e93}
+html.android-app .chat-modal .modal-inner{height:100%;display:flex;flex-direction:column;padding:56px 20px max(30px,env(safe-area-inset-bottom))}
+html.android-app .chat-modal .section-kicker{display:none}
+html.android-app .chat-modal h2{font-size:20px;margin:0 0 18px}
+html.android-app .chat-messages{flex:1;height:auto;min-height:0}
+html.android-app .chat-form .primary-button{background:#ff9500}
+html.android-app .auth-symbol{background:#fff1dc}
+}
+/* Policy and moderation controls */
+.policy-links{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;margin:14px 0 0}
+.auth-card .policy-links{display:flex;margin:18px 0 0}
+.policy-links a,.footer a,.modal-inner a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.policy-check{display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5;margin:12px 0}
+.auth-card .policy-check{display:flex}
+.modal .policy-check{display:flex}
+.policy-check input{width:18px!important;min-width:18px;min-height:18px;height:18px;margin:1px 0 0;padding:0}
+.member-controls{display:inline-flex;gap:3px;margin-left:5px}
+.member-controls button,.chat-report{border:0;background:transparent;color:#51685b;text-decoration:underline;text-underline-offset:2px;font:inherit;font-size:11px;cursor:pointer;padding:3px}
+.content-report{border:0;background:transparent;color:#51685b;text-decoration:underline;text-underline-offset:2px;padding:0 0 12px;font:inherit;font-size:11px;cursor:pointer}
+.member-controls button:focus-visible,.chat-report:focus-visible{outline:2px solid #176345;outline-offset:2px}
+#report-reason{box-sizing:border-box;width:100%;border:1px solid #b8c5bb;border-radius:12px;padding:12px;font:inherit;resize:vertical}

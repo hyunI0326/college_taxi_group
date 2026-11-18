@@ -5,6 +5,11 @@
   "type": "module",
   "scripts": {
     "start": "node server.mjs",
+    "cloud:dev": "wrangler dev",
+    "cloud:deploy": "wrangler deploy",
     "test": "node --test"
+  },
+  "devDependencies": {
+    "wrangler": "^4.151.0"
   }
 }

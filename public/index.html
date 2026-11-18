@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f6f1">
-  <title>택시팟 — 같이 타고, 가볍게 도착</title>
-  <meta name="description" content="시청, 광화문, 서울역에서 상명대까지. 등교 택시 파티를 만들고 함께 타세요.">
+  <title>대택구 — 같이 타고, 가볍게 도착</title>
+  <meta name="description" content="대택구(대학생택시팟구함)에서 같은 대학 동승자를 찾고 함께 타세요.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,24 +16,51 @@
   <script defer src="/app.js"></script>
 </head>
 <body>
-  <div class="site-shell">
+  <section id="auth-screen" class="auth-screen" aria-labelledby="auth-title" hidden>
+    <div class="auth-card">
+      <div class="auth-symbol" aria-hidden="true">🚕</div>
+      <span class="section-kicker">대학생택시팟구함</span>
+      <h1 id="auth-title">대택구</h1>
+      <p>같은 대학 친구들과 택시를 함께 타요.<br>시작하려면 로그인해 주세요.</p>
+      <div class="auth-tabs" role="tablist" aria-label="계정">
+        <button type="button" class="active" data-auth-mode="login" role="tab" aria-selected="true">로그인</button>
+        <button type="button" data-auth-mode="register" role="tab" aria-selected="false">회원가입</button>
+      </div>
+      <form id="auth-form">
+        <label for="auth-id">아이디</label><input id="auth-id" name="loginId" autocomplete="username" pattern="[a-zA-Z0-9_]{4,24}" minlength="4" maxlength="24" placeholder="영문·숫자·밑줄 4~24자" required>
+        <label for="auth-password">비밀번호</label><input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="72" placeholder="8자 이상" required>
+        <div class="register-fields" hidden>
+          <label for="auth-name">닉네임</label><input id="auth-name" name="name" minlength="2" maxlength="12" autocomplete="nickname" placeholder="파티원에게 보일 이름" required disabled>
+          <label for="auth-university">재학 중인 대학</label><select id="auth-university" name="university" required disabled><option value="">대학을 선택해 주세요</option></select>
+          <p class="auth-hint">선택한 대학의 파티만 이용할 수 있습니다. 가입 후 대학은 변경할 수 없습니다.</p>
+          <label class="policy-check"><input id="auth-rules" type="checkbox" required disabled> <span><a href="/community.html" target="_blank" rel="noopener">파티 이용 규칙</a>을 읽고 동의합니다.</span></label>
+        </div>
+        <p id="auth-error" class="auth-error" role="alert" hidden></p>
+        <button class="primary-button full" type="submit">로그인</button>
+      </form>
+      <small>현재 대학은 본인이 선택합니다. 재학 여부 확인은 준비 중입니다.</small>
+      <p class="policy-links"><a href="/privacy.html">개인정보처리방침</a><a href="/delete-account.html">계정 삭제</a></p>
+    </div>
+  </section>
+  <div class="site-shell" hidden>
     <header class="topbar">
-      <a class="brand" href="/" aria-label="택시팟 홈">
+      <a class="brand" href="/" aria-label="대택구 홈">
         <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M5 17.5c0-1.1.9-2 2-2h18c1.1 0 2 .9 2 2v6H5v-6Z" fill="currentColor"/><path d="m9 15.5 2.3-5.1A2.5 2.5 0 0 1 13.6 9h4.8a2.5 2.5 0 0 1 2.3 1.4l2.3 5.1" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="10" cy="23.5" r="2.4" fill="#F7F6F1"/><circle cx="22" cy="23.5" r="2.4" fill="#F7F6F1"/><path d="M16 2v3M12 3.5l1.2 2.2M20 3.5l-1.2 2.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-        <span>택시팟<span class="brand-dot">.</span></span>
+        <span>대택구<span class="brand-dot">.</span></span>
       </a>
       <nav class="top-actions" aria-label="주요 메뉴">
-        <span class="nav-caption">상명대 등교 택시, 함께 타요</span>
-        <button id="profile-button" class="profile-button" type="button">닉네임 설정 <span aria-hidden="true">↗</span></button>
+        <span class="nav-caption">같은 대학 친구들과 함께 타요</span>
+        <button id="kakao-profile-button" class="profile-button kakao-profile-button" type="button" hidden>카카오 연결</button>
+        <button id="profile-button" class="profile-button" type="button">내 프로필 <span aria-hidden="true">↗</span></button>
       </nav>
     </header>
 
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <div class="eyebrow"><span class="live-dot"></span> 상명대 등교 메이트를 찾는 가장 쉬운 방법</div>
+          <div class="eyebrow"><span class="live-dot"></span> 같은 대학 등교 메이트를 찾는 가장 쉬운 방법</div>
           <h1 id="hero-title">혼자 타기엔 아까운 길,<br><em>같이 가면 가벼워져요.</em></h1>
-          <p>시청 · 광화문 · 서울역에서 만나 상명대까지.<br>가까운 파티를 찾고, 택시비는 딱 맞게 나눠요.</p>
+          <p>같은 대학 친구들과 함께 타고,<br>택시비는 딱 맞게 나눠요.</p>
           <div class="hero-actions">
             <button class="primary-button" id="hero-create" type="button">새 파티 만들기 <span aria-hidden="true">↗</span></button>
             <a class="text-link" href="#find-party">파티 둘러보기 <span aria-hidden="true">↓</span></a>
@@ -42,64 +69,95 @@
         <div class="hero-art" aria-hidden="true">
           <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
           <div class="art-route"><span class="route-dash"></span><span class="route-dash"></span><span class="route-dash"></span><span class="route-dash"></span><span class="route-dash"></span><span class="route-dash"></span></div>
-          <div class="art-badge badge-start"><span>📍</span><strong>시청에서 출발</strong><small>함께 만나요</small></div>
+          <div class="art-badge badge-start"><span>📍</span><strong>지도에서 만나요</strong><small>함께 만나요</small></div>
           <div class="art-taxi"><div class="taxi-top"></div><div class="taxi-window"></div><div class="taxi-body"><span class="taxi-checker">▮ ▯ ▮ ▯</span></div><div class="taxi-wheel wheel-left"></div><div class="taxi-wheel wheel-right"></div></div>
-          <div class="art-badge badge-end"><span>🎓</span><strong>상명대 도착!</strong><small>오늘도 좋은 하루</small></div>
+          <div class="art-badge badge-end"><span>🎓</span><strong>학교로 함께!</strong><small>오늘도 좋은 하루</small></div>
           <div class="art-spark spark-one">✳</div><div class="art-spark spark-two">✳</div>
         </div>
       </section>
 
       <section id="find-party" class="workspace" aria-labelledby="workspace-title">
         <div class="section-heading">
-          <div><span class="section-kicker">FIND YOUR POT</span><h2 id="workspace-title">어디서 출발하나요?</h2><p>출발 지역을 고르면 근처 파티와 만날 장소가 지도에 보여요.</p></div>
-          <div class="destination-pill"><span aria-hidden="true">↗</span> 도착지 <strong>상명대학교</strong></div>
-        </div>
-        <div class="region-tabs" role="tablist" aria-label="출발 지역">
-          <button class="region-tab active" type="button" role="tab" aria-selected="true" data-region="cityhall"><span class="tab-icon">◉</span><span>시청</span><small>City Hall</small></button>
-          <button class="region-tab" type="button" role="tab" aria-selected="false" data-region="gwanghwamun"><span class="tab-icon">◉</span><span>광화문</span><small>Gwanghwamun</small></button>
-          <button class="region-tab" type="button" role="tab" aria-selected="false" data-region="seoulstation"><span class="tab-icon">◉</span><span>서울역</span><small>Seoul Station</small></button>
+          <div><span class="section-kicker">FIND YOUR POT</span><h2 id="workspace-title">우리 대학 파티</h2><p>같은 대학 파티와 만날 장소를 지도에서 확인해요.</p></div>
+          <div class="destination-pill"><span aria-hidden="true">↗</span> 내 대학 <strong id="destination-university">대학교</strong></div>
         </div>
         <div class="workspace-grid">
           <div class="party-column">
-            <div class="list-heading"><div><h3>모집 중인 파티 <span id="party-count">0</span></h3><p id="region-description">시청 주변에서 출발하는 택시팟</p></div><button class="small-create" id="list-create" type="button">+ 파티 만들기</button></div>
+            <div class="list-heading"><div><h3>모집 중인 파티 <span id="party-count">0</span></h3><p id="region-description">우리 대학 택시 파티</p></div><button class="small-create" id="list-create" type="button">+ 파티 만들기</button></div>
             <div id="party-list" class="party-list" aria-live="polite"></div>
             <div class="how-it-works"><div class="how-icon">✳</div><div><strong>같이 타고, 깔끔하게 나눠요</strong><p>파티장이 택시비를 입력하면 참여 인원에 맞춰 1원까지 계산해 드려요.</p></div></div>
           </div>
           <div class="map-column">
             <div class="map-card">
-              <div class="map-heading"><div><span class="map-kicker">MEETING POINTS</span><h3><span id="map-region-name">시청</span> 근처에서 만나요</h3></div><span class="map-live"><span></span> 지도에서 확인</span></div>
-              <div id="main-map" class="main-map" role="region" aria-label="선택 지역의 집결지 지도"></div>
-              <div class="map-footer"><span class="pin-key"><i></i> 출발 지역 <i></i> 파티 집결지</span><span>지도에서 파티 핀을 눌러 보세요</span></div>
+              <div class="map-heading"><div><span class="map-kicker">MEETING POINTS</span><h3><span id="map-region-name">우리 대학</span> 집결지</h3></div><span class="map-live"><span></span> 지도에서 확인</span></div>
+              <div id="main-map" class="main-map" role="region" aria-label="우리 대학 파티 집결지 지도"></div>
+              <div class="map-footer"><span class="pin-key"><i></i> 기본 위치 <i></i> 파티 집결지</span><span>지도에서 파티 핀을 눌러 보세요</span></div>
             </div>
             <div id="party-detail" class="party-detail" aria-live="polite"></div>
           </div>
         </div>
       </section>
-      <footer class="footer"><span class="footer-brand">택시팟<span>.</span></span><span>같은 방향이라면, 함께 가요.</span><small>상명대 등교길을 위한 택시 파티</small></footer>
+      <footer class="footer"><span class="footer-brand">대택구<span>.</span></span><span>같은 방향이라면, 함께 가요.</span><small><a href="/privacy.html">개인정보처리방침</a> · <a href="/community.html">이용 규칙</a> · <a href="/delete-account.html">계정 삭제</a></small></footer>
     </main>
   </div>
 
   <dialog id="identity-dialog" class="modal identity-modal" aria-labelledby="identity-title">
     <form id="identity-form" class="modal-inner">
       <button class="close-button" type="button" data-close="identity-dialog" aria-label="닫기">×</button>
-      <span class="modal-icon">✳</span><span class="section-kicker">WELCOME TO TAXI POT</span>
-      <h2 id="identity-title">뭐라고 불러드릴까요?</h2>
-      <p>파티원에게 보여줄 닉네임을 입력해 주세요.</p>
+      <span class="modal-icon">✳</span><span class="section-kicker">대학생택시팟구함</span>
+      <h2 id="identity-title">내 프로필</h2>
+      <p><strong id="profile-university"></strong> 파티를 이용 중입니다.</p>
       <label for="nickname">닉네임</label><input id="nickname" name="name" minlength="2" maxlength="12" placeholder="예: 아침형 택시러" required autocomplete="nickname">
-      <button class="primary-button full" type="submit">시작하기 <span aria-hidden="true">↗</span></button>
+      <button id="identity-kakao" class="kakao-connect" type="button" hidden>카카오톡 프로필 연결</button>
+      <p class="identity-profile-note">카카오 프로필을 연결하면 파티원에게 닉네임과 사진이 표시돼요. 닉네임으로 전환하면 프로필 사진이 제거됩니다.</p>
+      <button id="ad-privacy-options" class="logout-button" type="button" hidden>광고 개인정보 선택</button>
+      <button id="logout-button" class="logout-button" type="button">로그아웃</button>
+      <p class="policy-links"><a href="/privacy.html">개인정보처리방침</a><a href="/community.html">이용 규칙</a><a href="/delete-account.html">계정 삭제</a></p>
+      <button class="primary-button full" type="submit">닉네임 저장 <span aria-hidden="true">↗</span></button>
+    </form>
+  </dialog>
+  <dialog id="rules-dialog" class="modal" aria-labelledby="rules-title">
+    <form id="rules-form" class="modal-inner">
+      <span class="section-kicker">COMMUNITY RULES</span><h2 id="rules-title">파티 이용 규칙</h2>
+      <p>파티 제목·집결지 설명·채팅에 타인을 위협하거나 괴롭히는 내용, 성적·불법·차별적 콘텐츠, 스팸을 올리지 마세요. 위반 내용은 신고할 수 있고 운영자가 삭제하거나 이용을 제한할 수 있습니다.</p>
+      <p><a href="/community.html" target="_blank" rel="noopener">이용 규칙 전체 보기</a></p>
+      <label class="policy-check"><input id="rules-consent" type="checkbox" required> 이용 규칙에 동의합니다.</label>
+      <button class="primary-button full" type="submit">동의하고 계속하기</button>
+      <p class="policy-links"><button id="rules-logout" class="logout-button" type="button">동의하지 않고 로그아웃</button><a href="/delete-account.html">계정 삭제</a></p>
+    </form>
+  </dialog>
+  <dialog id="report-dialog" class="modal" aria-labelledby="report-title">
+    <form id="report-form" class="modal-inner">
+      <button class="close-button" type="button" data-close="report-dialog" aria-label="닫기">×</button>
+      <span class="section-kicker">REPORT</span><h2 id="report-title">파티원 신고</h2>
+      <p>신고 내용은 운영자가 확인합니다. 긴급한 위험은 112에 신고해 주세요.</p>
+      <label for="report-reason">신고 사유</label><textarea id="report-reason" name="reason" minlength="2" maxlength="500" rows="4" placeholder="문제가 된 행동이나 내용을 적어 주세요." required></textarea>
+      <button class="primary-button full" type="submit">신고 접수</button>
     </form>
   </dialog>
 
   <dialog id="create-dialog" class="modal create-modal" aria-labelledby="create-title">
     <form id="create-form" class="modal-inner">
       <button class="close-button" type="button" data-close="create-dialog" aria-label="닫기">×</button>
-      <span class="section-kicker">CREATE A POT</span><h2 id="create-title">새 파티 만들기</h2><p><strong id="create-region">시청</strong>에서 출발해 상명대로 함께 갈 사람을 모아요.</p>
-      <div class="field-row"><div class="field"><label for="party-title">파티 제목</label><input id="party-title" name="title" minlength="2" maxlength="40" placeholder="예: 8시 30분 같이 가요!" required></div><div class="field seats-field"><label for="party-seats">정원</label><select id="party-seats" name="seats"><option value="2">2명</option><option value="3">3명</option><option value="4" selected>4명</option></select></div></div>
+      <span class="section-kicker">CREATE A POT</span><h2 id="create-title">새 파티 만들기</h2><p><strong id="create-region">우리 대학</strong> 친구들과 택시를 함께 타요.</p>
+      <div class="field-row"><div class="field"><label for="party-title">파티 제목</label><input id="party-title" name="title" minlength="2" maxlength="40" placeholder="예: 8시 30분 같이 가요!" required></div><div class="field seats-field"><label for="party-seats">정원</label><select id="party-seats" name="seats"><option value="2">2명</option><option value="3">3명</option><option value="4" selected>4명</option></select><div class="seat-options" role="group" aria-label="정원"><button type="button" data-seats="2" aria-pressed="false">2명</button><button type="button" data-seats="3" aria-pressed="false">3명</button><button type="button" data-seats="4" aria-pressed="true">4명</button></div></div></div>
       <div class="field"><label for="party-time">출발 시간</label><input id="party-time" name="departureAt" type="datetime-local" required></div>
-      <div class="field"><label>모일 위치 <span class="label-hint">지도 클릭 또는 방향키로 핀 이동</span></label><div id="picker-map" class="picker-map" role="region" tabindex="0" aria-label="집결지 선택 지도. 방향키로 핀을 이동할 수 있습니다."></div><div class="coordinate-row"><span class="coordinate-dot"></span><span id="picked-coordinates" aria-live="polite">위치를 선택해 주세요</span><span>반경 1.2km</span></div></div>
-      <div class="field"><label for="meeting-note">집결지 설명 <span class="optional">선택</span></label><input id="meeting-note" name="meetingNote" maxlength="80" placeholder="예: 시청역 5번 출구 앞"></div>
+      <div class="field"><label>모일 위치 <span class="label-hint">지도 클릭 또는 방향키로 핀 이동</span></label><div id="picker-map" class="picker-map" role="region" tabindex="0" aria-label="집결지 선택 지도. 방향키로 핀을 이동할 수 있습니다."></div><div class="coordinate-row"><span class="coordinate-dot"></span><span id="picked-coordinates" aria-live="polite">위치를 선택해 주세요</span></div></div>
+      <div class="field"><label for="meeting-note">집결지 설명 <span class="optional">선택</span></label><input id="meeting-note" name="meetingNote" maxlength="80" placeholder="예: 지하철역 5번 출구 앞"></div>
       <button class="primary-button full" type="submit">파티 만들기 <span aria-hidden="true">↗</span></button>
     </form>
+  </dialog>
+  <dialog id="chat-dialog" class="modal chat-modal" aria-labelledby="chat-title">
+    <div class="modal-inner">
+      <button class="close-button" type="button" data-close="chat-dialog" aria-label="닫기">×</button>
+      <span class="section-kicker">PARTY CHAT</span><h2 id="chat-title">파티 채팅</h2>
+      <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"></div>
+      <form id="chat-form" class="chat-form">
+        <label for="chat-input" class="sr-only">메시지</label>
+        <input id="chat-input" name="body" maxlength="500" placeholder="파티원에게 메시지 보내기" required>
+        <button class="primary-button" type="submit">전송</button>
+      </form>
+    </div>
   </dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
